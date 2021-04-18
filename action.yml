@@ -1,0 +1,14 @@
+---
+name: 'docker-based-action'
+description: 'https://github.com/garethjevans/docker-based-action'
+branding:
+  icon: 'tag'
+  color: 'blue'
+inputs:
+outputs:
+runs:
+  using: 'docker'
+  image: 'docker://garethjevans/docker-based-action:0.1.0'
+  entrypoint: 'github-actions-entrypoint.sh'
+  env:
+    JENKINS_VERSION: ${{ inputs.version-identifier }}
