@@ -33,5 +33,6 @@ jobs:
 
       - name: Update
         run: |
-          echo "docker://${{ steps.prep.outputs.image }}:${{ steps.prep.outputs.version }}"
+          sed -i "s|image: .*|image: 'docker://${{ steps.prep.outputs.image }}:${{ steps.prep.outputs.version }}'|"  action.yml
+          git diff
 ...
