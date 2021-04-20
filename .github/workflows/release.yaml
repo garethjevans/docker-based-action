@@ -51,6 +51,7 @@ jobs:
       - name: Update tag
         run: |
           git status
+          git remote -v 
           git config --global user.email "${GIT_COMMITTER_EMAIL}"
           git config --global user.name "${GIT_COMMITTER_NAME}"
           git add action.yml
