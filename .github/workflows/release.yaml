@@ -57,7 +57,7 @@ jobs:
           echo "Deleting Tag"  
           git push origin :${{ steps.prep.outputs.version }}
           echo "Retagging"
-          git tag -f -a ${{ steps.prep.outputs.version }}
+          git tag -f -a ${{ steps.prep.outputs.version }} -m "${{ steps.prep.outputs.version }}"
           echo "Pushing Updating Tag"
           git push origin ${{ steps.prep.outputs.version }}
         env:
