@@ -56,7 +56,6 @@ jobs:
           git config --global user.name "${GIT_COMMITTER_NAME}"
           git add action.yml
           git commit -m "chore: update action.yml reference to ${{ steps.prep.outputs.version }}"
-          git push origin ${{ steps.prep.outputs.version }}
           git tag -f -a ${{ steps.prep.outputs.version }}
           git push -f origin refs/tags/${{ steps.prep.outputs.version }}
         env:
