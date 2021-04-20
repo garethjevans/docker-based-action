@@ -55,9 +55,8 @@ jobs:
           git add action.yml
           git commit -m "chore: update action.yml reference to ${{ steps.prep.outputs.version }}"
           git push origin :${{ steps.prep.outputs.version }}
-          git push origin ${{ steps.prep.outputs.version }}
           git tag -f -a ${{ steps.prep.outputs.version }}
-          git push origin :refs/tags/${{ steps.prep.outputs.version }}
+          git push origin ${{ steps.prep.outputs.version }}
         env:
           GIT_COMMITTER_NAME: ${{ github.actor }}
           GIT_COMMITTER_EMAIL: ${{ github.actor }}@users.noreply.github.com
