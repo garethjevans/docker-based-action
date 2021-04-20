@@ -49,6 +49,9 @@ jobs:
           git push
           git tag -f -a ${{ steps.prep.outputs.version }}
           git push -f origin refs/tags/${{ steps.prep.outputs.version }}
+        env:
+          GIT_COMMITTER_NAME: ${{ github.actor }}
+          GIT_COMMITTER_EMAIL: ${{ github.actor }}@users.noreply.github.com
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2.4.1
