@@ -54,7 +54,9 @@ jobs:
           git config --global user.name "${GIT_COMMITTER_NAME}"
           git add action.yml
           git commit -m "chore: update action.yml reference to ${{ steps.prep.outputs.version }}"
-          echo "Deleting Tag"  
+          COMMIT=$(git rev-parse --short HEAD)
+          echo "Current commit is ${COMMIT}"
+          echo "Deleting Tag"
           git push origin :${{ steps.prep.outputs.version }}
           echo "Retagging"
           git tag -f -a ${{ steps.prep.outputs.version }} -m "${{ steps.prep.outputs.version }}"
