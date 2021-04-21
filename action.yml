@@ -8,7 +8,7 @@ inputs:
 outputs:
 runs:
   using: 'docker'
-  image: 'docker://garethjevans/docker-based-action:0.1.0'
+  image: 'docker://garethjevans/docker-based-action:0.0.24'
   entrypoint: 'github-actions-entrypoint.sh'
   env:
     JENKINS_VERSION: ${{ inputs.version-identifier }}
