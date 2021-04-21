@@ -50,6 +50,8 @@ jobs:
 
       - name: Update tag
         run: |
+          RELEASE=$(gh api /repos/$GITHUB_REPOSITORY/releases/tags/${{ steps.prep.outputs.version }} | jq '.id')
+          echo "Release ID = $RELEASE"
           git config --global user.email "${GIT_COMMITTER_EMAIL}"
           git config --global user.name "${GIT_COMMITTER_NAME}"
           git add action.yml
@@ -62,8 +64,6 @@ jobs:
           git tag -f -a ${{ steps.prep.outputs.version }} -m "${{ steps.prep.outputs.version }}" ${COMMIT}
           echo "Pushing Updating Tag"
           git push origin refs/tags/${{ steps.prep.outputs.version }}
-          RELEASE=$(gh api /repos/$GITHUB_REPOSITORY/releases/tags/${{ steps.prep.outputs.version }} | jq '.id')
-          echo "Release ID = $RELEASE"
           gh api -X PATCH -F draft=false -F sha=$COMMIT /repos/$GITHUB_REPOSITORY/releases/$RELEASE
         env:
           GIT_COMMITTER_NAME: ${{ github.actor }}
