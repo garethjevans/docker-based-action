@@ -62,9 +62,12 @@ jobs:
           git tag -f -a ${{ steps.prep.outputs.version }} -m "${{ steps.prep.outputs.version }}" ${COMMIT}
           echo "Pushing Updating Tag"
           git push origin refs/tags/${{ steps.prep.outputs.version }}
+          RELEASEID=$(gh api /repos/$GITHUB_REPOSITORY/releases/tags/${{ steps.prep.outputs.version }})
+          echo "Release ID = $RELEASEID"
         env:
           GIT_COMMITTER_NAME: ${{ github.actor }}
           GIT_COMMITTER_EMAIL: ${{ github.actor }}@users.noreply.github.com
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2.4.1
